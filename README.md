@@ -10,6 +10,8 @@ The scheduler displays the flights chronologically with a horizontal bar below d
 
 There are many UI/UX pieces of this project that could be improved upon in further iterations, but this minimum viable product should meet the requirements as expected.
 
+Note: The current version was not intended to run on mobile devices.
+
 # Run the project
 
 To run this project, after cloning the code you must run:
