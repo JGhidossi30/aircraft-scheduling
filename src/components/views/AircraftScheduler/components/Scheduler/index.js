@@ -3,7 +3,7 @@ import Flight from '../Flight';
 
 export default class Scheduler extends Component {
     render() {
-        const {aircraft, schedule, removeFlight} = this.props;
+        const {schedule, removeFlight} = this.props;
         return (
             <div className="flex-1 scroll-y px-2">
                 <h3>
@@ -13,6 +13,7 @@ export default class Scheduler extends Component {
                             flight={flight}
                             index={index}
                             onClick={() => removeFlight(index)}
+                            key={index}
                         />
                     ))}
                 </h3>

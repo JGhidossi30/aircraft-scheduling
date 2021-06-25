@@ -111,6 +111,7 @@ export default class AircraftScheduler extends Component {
                                 index={index}
                                 onClick={selectAircraft}
                                 utilization={utilization}
+                                key={index}
                             />
                         ))}
                     </div>
@@ -139,6 +140,7 @@ export default class AircraftScheduler extends Component {
                                 flight={flight}
                                 index={index}
                                 onClick={addFlight}
+                                key={index}
                             />
                         ))}
                     </div>

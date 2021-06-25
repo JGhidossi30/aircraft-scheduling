@@ -26,7 +26,7 @@ const Meter = (props) => {
 }
 
 Meter.propTypes = {
-    schedule: PropTypes.array.isRequired,
+    schedule: PropTypes.array,
 };
 
 export default Meter;
