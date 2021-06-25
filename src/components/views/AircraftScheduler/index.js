@@ -111,6 +111,7 @@ export default class AircraftScheduler extends Component {
                                 index={index}
                                 onClick={selectAircraft}
                                 utilization={utilization}
+                                selected={selectedAircraft === index}
                                 key={index}
                             />
                         ))}

@@ -9,6 +9,11 @@
     margin-bottom: 0;
   }
 
+  &.selected {
+    background: #127d8d;
+    color: white;
+  }
+
   &:hover {
     background: #2198aa;
     color: white;
