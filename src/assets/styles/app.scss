@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+html, body {
+  margin: 0;
+  font-family: Poppins, sans-serif;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+.app {
+  background: linear-gradient(45deg, #026bc9, #2198aa 50%);
+  height: calc(100vh - 100px);
+  padding: 50px;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #333333;
+}
+
+@mixin margin-classes {
+  @for $i from 1 through 12 {
+    $margin: $i * 10px;
+    .m-#{$i} {
+      margin: $margin;
+    }
+    .ml-#{$i} {
+      margin-left: $margin;
+    }
+    .mr-#{$i} {
+      margin-right: $margin;
+    }
+    .mt-#{$i} {
+      margin-top: $margin;
+    }
+    .mb-#{$i} {
+      margin-bottom: $margin;
+    }
+    .mx-#{$i} {
+      margin-left: $margin;
+      margin-right: $margin;
+    }
+    .my-#{$i} {
+      margin-top: $margin;
+      margin-bottom: $margin;
+    }
+  }
+}
+
+@include margin-classes;
+
+
+@mixin padding-classes {
+  @for $i from 1 through 12 {
+    $padding: $i * 10px;
+    .p-#{$i} {
+      padding: $padding;
+    }
+    .pl-#{$i} {
+      padding-left: $padding;
+    }
+    .pr-#{$i} {
+      padding-right: $padding;
+    }
+    .pt-#{$i} {
+      padding-top: $padding;
+    }
+    .pb-#{$i} {
+      padding-bottom: $padding;
+    }
+    .px-#{$i} {
+      padding-left: $padding;
+      padding-right: $padding;
+    }
+    .py-#{$i} {
+      padding-top: $padding;
+      padding-bottom: $padding;
+    }
+  }
+}
+
+@include padding-classes;
+

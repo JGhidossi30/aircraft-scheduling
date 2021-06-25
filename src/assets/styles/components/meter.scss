@@ -1,0 +1,19 @@
+.meter {
+  display: flex;
+  width: 100%;
+  height: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: #DDDDDD;
+
+  .scheduled {
+    background: #02a102;
+  }
+
+  .turnaround {
+    background: #b300b3;
+  }
+
+  .idle {
+    background: #DDDDDD;
+  }
+}

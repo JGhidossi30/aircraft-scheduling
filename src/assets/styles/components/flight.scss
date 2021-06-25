@@ -1,0 +1,26 @@
+.flight {
+  background: #EEEEEE;
+  border-radius: 120px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+  padding: 20px;
+  min-width: 200px;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+
+  &.add:hover {
+    background: #02a102;
+    color: white;
+  }
+
+  &.remove:hover {
+    background: #cb0000;
+    color: white;
+  }
+
+  h3 {
+    margin: 0;
+  }
+}

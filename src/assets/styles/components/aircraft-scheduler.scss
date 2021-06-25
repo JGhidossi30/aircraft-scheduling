@@ -1,0 +1,16 @@
+.aircraft-scheduler {
+  height: calc(100% - 40px);
+  background: white;
+  border-radius: 5px;
+  display: flex;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+
+  .aircrafts {
+    border-right: 1px solid #2198aa;
+  }
+
+  .flights {
+    border-left: 1px solid #2198aa;
+  }
+}
