@@ -47,7 +47,8 @@ export default class AircraftScheduler extends Component {
         let isOverlapped = false;
         schedules[selectedAircraft].forEach((scheduledFlight) => {
             if ((flight.departuretime >= scheduledFlight.departuretime && flight.departuretime <= scheduledFlight.arrivaltime + 1200) ||
-                (flight.arrivaltime + 1200 >= scheduledFlight.departuretime && flight.arrivaltime <= scheduledFlight.arrivaltime)) {
+                (flight.arrivaltime + 1200 >= scheduledFlight.departuretime && flight.arrivaltime <= scheduledFlight.arrivaltime) ||
+                (flight.departuretime <= scheduledFlight.departuretime && flight.arrivaltime >= scheduledFlight.arrivaltime)) {
                 isOverlapped = true;
             }
         });
