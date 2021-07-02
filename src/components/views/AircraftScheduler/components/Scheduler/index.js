@@ -13,7 +13,7 @@ export default class Scheduler extends Component {
                             flight={flight}
                             index={index}
                             onClick={() => removeFlight(index)}
-                            key={index}
+                            key={flight.id}
                         />
                     ))}
                 </h3>
