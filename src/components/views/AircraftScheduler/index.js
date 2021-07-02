@@ -55,12 +55,43 @@ export default class AircraftScheduler extends Component {
         return isOverlapped;
     }
 
+    isAccurate = (flight) => {
+        const {schedules, selectedAircraft} = this.state;
+        let precedingFlight = {};
+
+        schedules[selectedAircraft].forEach((scheduledFlight) => {
+            if (scheduledFlight.arrivaltime + 1200 <= flight.departuretime) {
+                precedingFlight = scheduledFlight;
+            }
+        });
+
+        return (precedingFlight?.destination || flight.origin) === flight.origin;
+    }
+
+    canDelete = (flight) => {
+        const {schedules, selectedAircraft} = this.state;
+        let precedingFlight = {};
+        let subsequentFlight = {};
+
+        const isEmpty = (obj) => Object.keys(obj).length === 0;
+
+        schedules[selectedAircraft].forEach((scheduledFlight) => {
+            if (scheduledFlight.arrivaltime + 1200 <= flight.departuretime) {
+                precedingFlight = scheduledFlight;
+            } else if (isEmpty(subsequentFlight) && flight.arrivaltime + 1200 <= scheduledFlight.departuretime) {
+                subsequentFlight = scheduledFlight;
+            }
+        });
+
+        return (precedingFlight?.destination || true) === (subsequentFlight?.origin || true);
+    }
+
     addFlight = (index) => {
         const {showError} = this.props;
         const {flights, schedules, selectedAircraft} = this.state;
-        const {hasOverlap} = this;
+        const {hasOverlap, isAccurate} = this;
 
-        if (!hasOverlap(flights.data[index])) {
+        if (!hasOverlap(flights.data[index]) && isAccurate(flights.data[index])) {
             const flight = flights.data.splice(index, 1)[0];
             schedules[selectedAircraft].push(flight);
             schedules[selectedAircraft].sort((a, b) => a.departuretime - b.departuretime);
@@ -69,23 +100,30 @@ export default class AircraftScheduler extends Component {
                 schedules,
             });
         } else {
-            showError(`Flight ${flights.data[index].id} overlaps with currently scheduled flights.`);
+            showError(`Flight ${flights.data[index].id} has a conflict with the current schedule.`);
         }
     }
 
     removeFlight = (index) => {
+        const {showError} = this.props;
         const {flights, schedules, selectedAircraft} = this.state;
-        const flight = schedules[selectedAircraft].splice(index, 1)[0];
-        flights.data.push(flight);
-        flights.data.sort((a, b) => {
-            if (a.id < b.id) return -1;
-            if (a.id > b.id) return 1;
-            return 0;
-        });
-        this.setState({
-            flights,
-            schedules,
-        });
+        const {canDelete} = this;
+
+        if (canDelete(flights.data[index]) || index === 0 || index === schedules[selectedAircraft].length - 1) {
+            const flight = schedules[selectedAircraft].splice(index, 1)[0];
+            flights.data.push(flight);
+            flights.data.sort((a, b) => {
+                if (a.id < b.id) return -1;
+                if (a.id > b.id) return 1;
+                return 0;
+            });
+            this.setState({
+                flights,
+                schedules,
+            });
+        } else {
+            showError(`Flight ${flights.data[index].id} has a conflict with the current schedule.`);
+        }
     }
 
     calculateUtilization = (schedule) => {
